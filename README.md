@@ -43,5 +43,5 @@ tools](https://github.com/TooTallNate/node-gyp#installation),
 then run this command in the source directory:
 
 ``` bash
-$ npm install
+$ npm install cue-sdk-node
 ```
