@@ -1,0 +1,3 @@
+[submodule "examples/node-cue-heatmap"]
+	path = examples/node-cue-heatmap
+	url = https://github.com/Yannicked/node-cue-heatmap
