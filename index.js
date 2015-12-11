@@ -7,6 +7,7 @@ var ref = require('ref')
 var StructType = require('ref-struct');
 var Enum = require('enum');
 var enums = require(__dirname+'/lib/enums.js');
+var path = require('path')
 
 var CorsairLedId = ref.types.int;
 var CorsairAccessMode = ref.types.int;
@@ -68,8 +69,8 @@ function CueError(err) {
 CueError.prototype = Error.prototype;
 
 class CueSDK {
-	constructor(libLocation, clear = false) { // libLocation = Full path of DLL file, if clear is true, the current lights will be cleared
-		this.CueSDKLib = ffi.Library(libLocation, {
+	constructor(clear = false) { // libLocation = Full path of DLL file, if clear is true, the current lights will be cleared
+		this.CueSDKLib = ffi.Library(path.join(__dirname, 'bin', process.arch, 'CUESDK_2013.dll'), {
 			'CorsairSetLedsColors': ['bool', ['int', 'pointer']],
 			'CorsairSetLedsColorsAsync': ['bool', ['int', 'pointer', 'pointer', 'pointer']],
 			'CorsairGetDeviceCount': ['int', []],
