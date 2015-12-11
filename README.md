@@ -7,11 +7,13 @@ pure JavaScript.
 
 Node.js has to be run with the command line flags ```--harmony_destructuring --harmony_default_parameters```
 
+Run node with ```--harmony_destructuring --harmony_default_parameters``` or use [traceur](https://github.com/google/traceur-compiler) ```traceur.require('node-cue-sdk')```
+
 Example with synchonous functions
 -------
 
 ``` js
-var CueSDK = require('node-cue-sdk')
+var CueSDK = require('node-cue-sdk'); // or var CueSDK = traceur.require('node-cue-sdk');
 
 var cue = new CueSDK();
 
@@ -36,13 +38,13 @@ Example with asynchonous functions
 -------
 
 ``` js
-var CueSDK = require('node-cue-sdk')
+var CueSDK = require('node-cue-sdk'); // or var CueSDK = traceur.require('node-cue-sdk');
 
 var cue = new CueSDK();
 
 // The CueSDK.set function can also work asynchonously, just add a function to the arguments and it'll be asynchonous
 cue.set('A', 255, 255, 0, function() { // This is the function which get called after completion
-    console.log('Lights set!')
+    console.log('Lights set!');
 });
 
 cue.set([
@@ -50,7 +52,7 @@ cue.set([
     ['S', 0 , 255, 0],
     ['D', 0, 0, 255]
 ], function() { // This is the function which get called after completion
-    console.log('Three lights set!')
+    console.log('Three lights set!');
 }); // Set A to red, S to green, and D to blue
 
 ```
