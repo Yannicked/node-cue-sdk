@@ -1,18 +1,28 @@
 {
   "name": "cue-sdk-node",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Corsair Cue SDK wrapper for node.js",
   "main": "index.js",
   "author": "Yannick de Jong",
   "license": "ISC",
+  "scripts": {
+	"install": "node getdll.js"
+  },
   "dependencies": {
     "enum": "^2.2.0",
     "ffi": "^2.0.0",
     "ref": "^1.3.1",
     "ref-struct": "^1.0.2"
   },
+  "devDependencies": {
+	"unzip": "^0.1.11",
+	"request": "^2.67.0",
+	"rimraf": "^2.4.4"
+  },
   "files": [
 	"index.js",
-	"enums.js"
-  ]
+	"getdll.js",
+	"lib"
+  ],
+  "repository": "https://github.com/Yannicked/node-cue-sdk"
 }

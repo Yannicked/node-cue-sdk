@@ -95,7 +95,6 @@ class CueSDK {
 			if (typeof(arguments[1]) === 'function') {
 				return this.setAsync(...arguments);
 			} else {
-				console.log(arguments);
 				return this.setSync(...arguments);
 			}
 		} else {
