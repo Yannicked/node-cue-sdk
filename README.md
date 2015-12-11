@@ -5,9 +5,7 @@ node-cue-sdk
 `node-cue-sdk` is a Node.js addon for loading and and using the Cue SDK in
 pure JavaScript.
 
-Node.js has to be run with the command line flags ```--harmony_destructuring --harmony_default_parameters```
-
-Run node with ```--harmony_destructuring --harmony_default_parameters``` or use [traceur](https://github.com/google/traceur-compiler) ```traceur.require('node-cue-sdk')```
+Run Node.js with ```--harmony_destructuring --harmony_default_parameters``` or use [traceur](https://github.com/google/traceur-compiler) ```traceur.require('node-cue-sdk')```
 
 Example with synchonous functions
 -------
