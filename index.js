@@ -188,7 +188,8 @@ class CueSDK {
 		this.set(l, true);
 	}
 	close() {
-		this.CueSDKLib.close();
+		this.CueSDKLib._dl.close();
+		this.CueSDKLib = {};
 	}
 	_getLedColor(ledId, r, g, b) {
 		let keyColor = new CorsairLedColor({ledId, r, g, b});
