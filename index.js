@@ -186,7 +186,7 @@ class CueSDK {
 			l.push([i, 0, 0, 0]);
 		};
 		this.set(l, true);
-	},
+	}
 	close() {
 		this.CueSDKLib.close();
 	}
