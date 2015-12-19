@@ -8,6 +8,7 @@ var StructType = require('ref-struct');
 var Enum = require('enum');
 var enums = require(__dirname+'/lib/enums.js');
 var path = require('path')
+var ArrayType = require('ref-array')
 
 var CorsairLedId = ref.types.int;
 var CorsairAccessMode = ref.types.int;
@@ -41,11 +42,11 @@ var CorsairLedPosition = StructType({
 	width: ref.types.double
 });
 
-var CorsairLedPositionPtr = ref.refType(CorsairLedPosition)
+var CorsairLedPositionArr = ArrayType(CorsairLedPosition)
 
 var CorsairLedPositions = StructType({
 	numberOfLeds: ref.types.int,
-	pLedPosition: CorsairLedPositionPtr
+	pLedPosition: CorsairLedPositionArr
 });
 
 var CorsairLedPositionsPtr = ref.refType(CorsairLedPositions);
@@ -186,6 +187,12 @@ class CueSDK {
 			l.push([i, 0, 0, 0]);
 		};
 		this.set(l, true);
+	}
+	getLeds() {
+		let p = this.CueSDKLib.CorsairGetLedPositions().deref();
+		let l = p['pLedPosition'];
+		l.length = p['numberOfLeds'];
+		return l;
 	}
 	close() {
 		this.CueSDKLib._dl.close();
