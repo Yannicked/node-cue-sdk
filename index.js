@@ -158,10 +158,10 @@ class CueSDK {
 		});
 		let re = this.CueSDKLib.CorsairSetLedsColorsAsync(l.length, Buffer.concat(l), asyncFunc, ref.NULL);
 		if (re) {
-			return this;
+			return asyncFunc;
 		} else {
 			this._error();
-			return this;
+			return asyncFunc;
 		}
 	}
 	setIndividualAsync(key, r, g, b, callback, ids = false) {
@@ -175,10 +175,10 @@ class CueSDK {
 		});
 		let re = this.CueSDKLib.CorsairSetLedsColorsAsync(1, l, asyncFunc, ref.NULL);
 		if (re) {
-			return this;
+			return asyncFunc;
 		} else {
 			this._error();
-			return this;
+			return asyncFunc;
 		}
 	}
 	clear() {
