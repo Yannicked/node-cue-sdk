@@ -2,13 +2,14 @@
 
 //node --harmony_destructuring --harmony_default_parameters
 
-var ffi = require('ffi')
-var ref = require('ref')
+var ffi = require('ffi');
+var ref = require('ref');
 var StructType = require('ref-struct');
 var Enum = require('enum');
 var enums = require(__dirname+'/lib/enums.js');
-var path = require('path')
-var ArrayType = require('ref-array')
+var path = require('path');
+var ArrayType = require('ref-array');
+var $traceurruntime = require('traceur/bin/traceur-runtime')
 
 var CorsairLedId = ref.types.int;
 var CorsairAccessMode = ref.types.int;
@@ -42,7 +43,7 @@ var CorsairLedPosition = StructType({
 	width: ref.types.double
 });
 
-var CorsairLedPositionArr = ArrayType(CorsairLedPosition)
+var CorsairLedPositionArr = ArrayType(CorsairLedPosition);
 
 var CorsairLedPositions = StructType({
 	numberOfLeds: ref.types.int,
@@ -151,7 +152,7 @@ class CueSDK {
 		}
 		let asyncFunc = ffi.Callback('void', ['pointer', 'bool', CorsairError], function(context, succes, error) {
 			if (succes) {
-				callback()
+				callback();
 			} else {
 				this._error();
 			}
@@ -168,7 +169,7 @@ class CueSDK {
 		let l = this._getLedColor(ids?key:this._getLedIdForKeyName(key), r, g, b).ref();
 		let asyncFunc = ffi.Callback('void', ['pointer', 'bool', CorsairError], function(context, succes, error) {
 			if (succes) {
-				callback()
+				callback();
 			} else {
 				this._error();
 			}
@@ -185,7 +186,7 @@ class CueSDK {
 		let l = [];
 		for (let i = 1; i<=154; i++) {
 			l.push([i, 0, 0, 0]);
-		};
+		}
 		this.set(l, true);
 	}
 	getLeds() {
@@ -200,16 +201,16 @@ class CueSDK {
 	}
 	_getLedColor(ledId, r, g, b) {
 		let keyColor = new CorsairLedColor({ledId, r, g, b});
-		return keyColor
+		return keyColor;
 	}
 	_getLedIdForKeyName(key) {
 		return enums.CorsairLedId.get('CLK_'+key).value;
 	}
 	_error() {
-		this.lastError = this.CueSDKLib.CorsairGetLastError()
+		this.lastError = this.CueSDKLib.CorsairGetLastError();
 		if (this.lastError != 'CE_Success' && this.lastError != 0) {
 			throw new CueError(this.lastError);
 		}
 	}
 }
-module.exports = {CueSDK}
+module.exports = {CueSDK};
