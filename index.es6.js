@@ -8,7 +8,7 @@ var StructType = require('ref-struct');
 var Enum = require('enum');
 var enums = require(__dirname+'/lib/enums.js');
 var path = require('path');
-var ArrayType = require('ref-array');]
+var ArrayType = require('ref-array');
 
 var CorsairLedId = ref.types.int;
 var CorsairAccessMode = ref.types.int;
