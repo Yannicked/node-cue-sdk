@@ -5,13 +5,11 @@ node-cue-sdk
 `node-cue-sdk` is a Node.js addon for loading and and using the Cue SDK in
 pure JavaScript.
 
-Run Node.js with ```--harmony_destructuring --harmony_default_parameters``` or use [traceur](https://github.com/google/traceur-compiler) ```traceur.require('node-cue-sdk')```
-
 Example with synchonous functions
 -------
 
 ``` js
-var CueSDK = require('node-cue-sdk'); // or var CueSDK = traceur.require('node-cue-sdk');
+var CueSDK = require('node-cue-sdk');
 
 var cue = new CueSDK();
 
@@ -36,7 +34,7 @@ Example with asynchonous functions
 -------
 
 ``` js
-var CueSDK = require('node-cue-sdk'); // or var CueSDK = traceur.require('node-cue-sdk');
+var CueSDK = require('node-cue-sdk');
 
 var cue = new CueSDK();
 
@@ -59,7 +57,6 @@ Requirements
 
  * Windows (Linux and Mac OSX are currently not supported by the CueSDK)
  * Node.js ```5.0.0``` or higher
- * The command line flags ```--harmony_destructuring --harmony_default_parameters``` for the ecmascript 6 features used
 
 Installation
 ------------
