@@ -11,7 +11,7 @@ Example with synchonous functions
 ``` js
 var CueSDK = require('node-cue-sdk');
 
-var cue = new CueSDK();
+var cue = new CueSDK.CueSDK();
 
 cue.set('W', 255, 255, 255); // Set the W key to #FFFFFF aka white
 
@@ -36,7 +36,7 @@ Example with asynchonous functions
 ``` js
 var CueSDK = require('node-cue-sdk');
 
-var cue = new CueSDK();
+var cue = new CueSDK.CueSDK();
 
 // The CueSDK.set function can also work asynchonously, just add a function to the arguments and it'll be asynchonous
 cue.set('A', 255, 255, 0, function() { // This is the function which get called after completion
