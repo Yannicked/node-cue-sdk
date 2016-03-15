@@ -7,6 +7,7 @@ var ref = require('ref');
 var StructType = require('ref-struct');
 var Enum = require('enum');
 var enums = require(__dirname+'/lib/enums.js');
+var utils = require(__dirname+'/lib/utils.js')
 var path = require('path');
 var ArrayType = require('ref-array');
 
@@ -85,6 +86,8 @@ class CueSDK {
 		this.details = this.CueSDKLib.CorsairPerformProtocolHandshake().toObject();
 		this.lastError = 0;
 		this._error();
+		
+		this.fps = 30;
 		
 		if (clear) {
 			this.clear();
@@ -180,6 +183,30 @@ class CueSDK {
 			this._error();
 			return asyncFunc;
 		}
+	}
+	fade() {
+		if (arguments[0] instanceof Array) {
+			if (typeof(arguments[1]) === 'function') {
+				return this.fadeAsync(...arguments);
+			} else {
+				return this.fadeSync(...arguments);
+			}
+		} else {
+			if (typeof(arguments[4]) === 'function') {
+				return this.fadeIndividualAsync(...arguments);
+			} else {
+				return this.fadeIndividualSync(...arguments);
+			}
+		}
+	}
+	fadeSync(k, f, t, l, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
+		utils.fadeColorWheel(f, t, l, this.fps, function(r, g, b) {
+			var a = [];
+			for (var i = 0; i<k.length; i++) {
+				a.push([k[i], r, g, b]);
+			}
+			this.setSync(a, ids);
+		}.bind(this));
 	}
 	clear() {
 		let l = [];

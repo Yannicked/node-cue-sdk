@@ -3,7 +3,7 @@ var fs = require('fs');
 var unzip = require('unzip')
 var rimraf = require('rimraf');
 
-var uri = 'http://softwaredownloads.corsair.com/Files/Gaming-Keyboards/Corsair-SDK-Release-v1.10.73.zip';
+var uri = 'http://softwaredownloads.corsair.com/Files/Gaming-Keyboards/Corsair-SDK-Release-v1.15.28.zip';
 
 function main () {
 	fs.mkdirSync(__dirname+'/tmp/')
