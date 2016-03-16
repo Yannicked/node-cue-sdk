@@ -5,6 +5,34 @@ node-cue-sdk
 `node-cue-sdk` is a Node.js addon for loading and and using the Cue SDK in
 pure JavaScript.
 
+Example with asynchonous functions
+-------
+
+``` js
+var CueSDK = require('node-cue-sdk');
+
+var cue = new CueSDK.CueSDK();
+
+// The CueSDK.set function can also work asynchonously, just add a function to the arguments and it'll be asynchonous
+cue.set('A', 255, 255, 0, function() { // This is the function which get called after completion
+    console.log('Lights set!');
+});
+
+cue.set([
+    ['A', 255, 0, 0],
+    ['S', 0 , 255, 0],
+    ['D', 0, 0, 255]
+], function() { // This is the function which get called after completion
+    console.log('Three lights set!');
+}); // Set A to red, S to green, and D to blue
+
+// fade from black [0, 0, 0] to cyan [0, 255, 255] in 1000ms
+cue.fade('Logo', [0, 0, 0], [0, 255, 255], 1000, function() {
+    console.log('This will run when the fading has completed!');
+});
+
+```
+***
 Example with synchonous functions
 -------
 
@@ -29,29 +57,7 @@ cue.set('Logo', 255, 255, 0); // Make the Corsair logo yellow
 cue.clear();
 
 ```
-***
-Example with asynchonous functions
--------
 
-``` js
-var CueSDK = require('node-cue-sdk');
-
-var cue = new CueSDK.CueSDK();
-
-// The CueSDK.set function can also work asynchonously, just add a function to the arguments and it'll be asynchonous
-cue.set('A', 255, 255, 0, function() { // This is the function which get called after completion
-    console.log('Lights set!');
-});
-
-cue.set([
-    ['A', 255, 0, 0],
-    ['S', 0 , 255, 0],
-    ['D', 0, 0, 255]
-], function() { // This is the function which get called after completion
-    console.log('Three lights set!');
-}); // Set A to red, S to green, and D to blue
-
-```
 Requirements
 ------------
 

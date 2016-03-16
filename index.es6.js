@@ -205,7 +205,7 @@ class CueSDK {
 	fadeIndividualAsync(k, f, t, l, cb = function(){}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
 		this.fade_helper[this.fadeType](f, t, l, this.fps, function(r, g, b) {
 			console.log("R: "+r+" G: "+g+" B: "+b);
-			var a = this.setIndividualAsync(k, r, g, b, cb, ids);
+			var a = this.setIndividualAsync(k, r, g, b, (r == t[0] && g == t[1] && b == t[2])?cb:(function(){}), ids);
 		}.bind(this));
 	}
 	clear() {
