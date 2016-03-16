@@ -88,6 +88,8 @@ class CueSDK {
 		this._error();
 		
 		this.fps = 30;
+		this.fade_helper = new utils.fade();
+		this.fadeType = 'Wheel';
 		
 		if (clear) {
 			this.clear();
@@ -186,26 +188,24 @@ class CueSDK {
 	}
 	fade() {
 		if (arguments[0] instanceof Array) {
-			if (typeof(arguments[1]) === 'function') {
-				return this.fadeAsync(...arguments);
-			} else {
-				return this.fadeSync(...arguments);
-			}
+			return this.fadeAsync(...arguments);
 		} else {
-			if (typeof(arguments[4]) === 'function') {
-				return this.fadeIndividualAsync(...arguments);
-			} else {
-				return this.fadeIndividualSync(...arguments);
-			}
+			return this.fadeIndividualAsync(...arguments);
 		}
 	}
-	fadeSync(k, f, t, l, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
-		utils.fadeColorWheel(f, t, l, this.fps, function(r, g, b) {
+	fadeAsync(k, f, t, l, cb = function(){}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
+		this.fade_helper[this.fadeType](f, t, l, this.fps, function(r, g, b) {
 			var a = [];
 			for (var i = 0; i<k.length; i++) {
 				a.push([k[i], r, g, b]);
 			}
-			this.setSync(a, ids);
+			var a = this.setAsync(a, cb, ids);
+		}.bind(this));
+	}
+	fadeIndividualAsync(k, f, t, l, cb = function(){}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
+		this.fade_helper[this.fadeType](f, t, l, this.fps, function(r, g, b) {
+			console.log("R: "+r+" G: "+g+" B: "+b);
+			var a = this.setIndividualAsync(k, r, g, b, cb, ids);
 		}.bind(this));
 	}
 	clear() {
