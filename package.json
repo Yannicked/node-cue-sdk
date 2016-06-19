@@ -10,7 +10,7 @@
   },
   "engines" : { 
 	"node" : ">=6.0.0"
-  }
+  },
   "dependencies": {
     "enum": "^2.2.0",
     "ffi": "git+https://github.com/Yannicked/node-ffi",
@@ -20,7 +20,7 @@
     "request": "^2.67.0",
     "rimraf": "^2.4.4",
     "unzip": "^0.1.11"
-  }
+  },
   "files": [
     "index.js",
     "getdll.js",
