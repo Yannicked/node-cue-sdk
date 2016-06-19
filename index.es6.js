@@ -63,7 +63,7 @@ var CorsairProtocolDetails = StructType({
 function CueError(err) {
     this.name = "CueError";
     this.message = enums.CorsairError.get(Math.pow(2, err)).key+((err>3&&err!=5)?' -- this might be an error in the CueSDK wrapper, please contact the developer.':'');
-	var error = new Error(this.message);
+	let error = new Error(this.message);
 	error.name = this.name;
 	this.stack = error.stack.split('\n')[0]+'\n'+error.stack.split('\n').splice(3, error.stack.split('\n').length).join('\n');
 }
@@ -154,7 +154,7 @@ class CueSDK {
 				l[i] = this._getLedColor(this._getLedIdForKeyName(key), r, g, b).ref();
 			}
 		}
-		let asyncFunc = ffi.Callback('void', ['pointer', 'bool', CorsairError], function(context, succes, error) {
+		let asyncFunc = ffi.Callback('void', ['pointer', 'bool', CorsairError], (context, succes, error) => {
 			if (succes) {
 				callback();
 			} else {
@@ -171,7 +171,7 @@ class CueSDK {
 	}
 	setIndividualAsync(key, r, g, b, callback, ids = false) {
 		let l = this._getLedColor(ids?key:this._getLedIdForKeyName(key), r, g, b).ref();
-		let asyncFunc = ffi.Callback('void', ['pointer', 'bool', CorsairError], function(context, succes, error) {
+		let asyncFunc = ffi.Callback('void', ['pointer', 'bool', CorsairError], (context, succes, error) => {
 			if (succes) {
 				callback();
 			} else {
@@ -193,20 +193,19 @@ class CueSDK {
 			return this.fadeIndividualAsync(...arguments);
 		}
 	}
-	fadeAsync(k, f, t, l, cb = function(){}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
-		this.fade_helper[this.fadeType](f, t, l, this.fps, function(r, g, b) {
-			var a = [];
-			for (var i = 0; i<k.length; i++) {
+	fadeAsync(k, f, t, l, cb = () => {}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
+		this.fade_helper[this.fadeType](f, t, l, this.fps, (r, g, b) => {
+			let a = [];
+			for (let i = 0; i<k.length; i++) {
 				a.push([k[i], r, g, b]);
 			}
-			var a = this.setAsync(a, cb, ids);
-		}.bind(this));
+			this.setAsync(a, cb, ids);
+		});
 	}
-	fadeIndividualAsync(k, f, t, l, cb = function(){}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
-		this.fade_helper[this.fadeType](f, t, l, this.fps, function(r, g, b) {
-			console.log("R: "+r+" G: "+g+" B: "+b);
-			var a = this.setIndividualAsync(k, r, g, b, (r == t[0] && g == t[1] && b == t[2])?cb:(function(){}), ids);
-		}.bind(this));
+	fadeIndividualAsync(k, f, t, l, cb = () => {}, ids = false) { // k = array of leds, f = from color, t = to color [r, g, b], l = time in ms
+		this.fade_helper[this.fadeType](f, t, l, this.fps, (r, g, b) => {
+			this.setIndividualAsync(k, r, g, b, (r == t[0] && g == t[1] && b == t[2])?cb:(() => {}), ids);
+		});
 	}
 	clear() {
 		let l = [];
