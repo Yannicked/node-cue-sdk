@@ -5,6 +5,8 @@ node-cue-sdk
 `node-cue-sdk` is a Node.js addon for loading and and using the Cue SDK in
 pure JavaScript.
 
+### <a href="https://github.com/Yannicked/node-cue-sdk/wiki/Documentation">Documentation</a>
+
 Example with asynchonous functions
 -------
 
