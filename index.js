@@ -71,7 +71,7 @@ function CueError(err) {
 CueError.prototype = Error.prototype;
 
 class CueSDK {
-	constructor(clear = false) { // libLocation = Full path of DLL file, if clear is true, the current lights will be cleared
+	constructor(clear = false, exclusive = false) { // libLocation = Full path of DLL file, if clear is true, the current lights will be cleared
 		this.CueSDKLib = ffi.Library(path.join(__dirname, 'bin', process.arch, 'CUESDK_2013.dll'), {
 			'CorsairSetLedsColors': ['bool', ['int', 'pointer']],
 			'CorsairSetLedsColorsAsync': ['bool', ['int', 'pointer', 'pointer', 'pointer']],
@@ -86,6 +86,9 @@ class CueSDK {
 		this.details = this.CueSDKLib.CorsairPerformProtocolHandshake().toObject();
 		this.lastError = 0;
 		this._error();
+		
+		// Request exclusive access to keyboard LEDs
+		if(exclusive) this.CueSDKLib.CorsairRequestControl(enums.CorsairAccessMode.CAM_ExclusiveLightingControl);
 		
 		this.fps = 30;
 		this.fade_helper = new utils.fade();
