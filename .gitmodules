@@ -1,9 +1,9 @@
 [submodule "examples/node-cue-heatmap"]
 	path = examples/node-cue-heatmap
 	url = https://github.com/Yannicked/node-cue-heatmap
-[submodule "examples/node-cue-ambient"]
-	path = examples/node-cue-ambient
-	url = https://github.com/Yannicked/node-cue-ambient
 [submodule "examples/nw-cue-effects"]
 	path = examples/nw-cue-effects
 	url = https://github.com/Yannicked/nw-cue-effects
+[submodule "examples/node-cue-ambient"]
+	path = examples/node-cue-ambient
+	url = https://github.com/Yannicked/node-cue-ambient
