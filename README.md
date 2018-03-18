@@ -11,7 +11,7 @@ Example with asynchonous functions
 -------
 
 ``` js
-var CueSDK = require('node-cue-sdk');
+var CueSDK = require('cue-sdk-node');
 
 var cue = new CueSDK.CueSDK();
 
@@ -39,7 +39,7 @@ Example with synchonous functions
 -------
 
 ``` js
-var CueSDK = require('node-cue-sdk');
+var CueSDK = require('cue-sdk-node');
 
 var cue = new CueSDK.CueSDK();
 
