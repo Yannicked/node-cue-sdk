@@ -16,7 +16,7 @@ var CueSDK = require('cue-sdk-node');
 var cue = new CueSDK.CueSDK();
 
 // The CueSDK.set function can also work asynchonously, just add a function to the arguments and it'll be asynchonous
-cue.set('A', 255, 255, 0, function() { // This is the function which get called after completion
+cue.set('A', 255, 255, 0, () => { // This is the function which get called after completion
     console.log('Lights set!');
 });
 
@@ -24,12 +24,12 @@ cue.set([
     ['A', 255, 0, 0],
     ['S', 0 , 255, 0],
     ['D', 0, 0, 255]
-], function() { // This is the function which get called after completion
+], () => { // This is the function which get called after completion
     console.log('Three lights set!');
 }); // Set A to red, S to green, and D to blue
 
 // fade from black [0, 0, 0] to cyan [0, 255, 255] in 1000ms
-cue.fade('Logo', [0, 0, 0], [0, 255, 255], 1000, function() {
+cue.fade('Logo', [0, 0, 0], [0, 255, 255], 1000, () {
     console.log('This will run when the fading has completed!');
 });
 
