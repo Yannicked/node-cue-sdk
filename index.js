@@ -114,7 +114,7 @@ var CorsairProtocolDetails = StructType({
 	* A error with the CUE sdk.
 	* @private
 */
-function CueError(err) {
+const CueError = (err) => {
     this.name = "CueError";
     this.message = enums.CorsairError.get(Math.pow(2, err)).key+((err>3&&err!=5)?' -- this might be an error in the CueSDK wrapper, please contact the developer.':'');
 	let error = new Error(this.message);
