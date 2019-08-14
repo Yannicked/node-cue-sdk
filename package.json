@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "enum": "^2.2.0",
-    "ffi": "git+https://github.com/Yannicked/node-ffi",
+    "ffi": "git+https://github.com/node-ffi/node-ffi.git",
     "ref": "^1.3.1",
     "ref-array": "^1.1.2",
     "ref-struct": "^1.0.2",
@@ -26,5 +26,5 @@
     "getdll.js",
     "lib"
   ],
-  "repository": "https://github.com/Yannicked/node-cue-sdk"
+  "repository": "https://github.com/101Cyber101/node-cue-sdk"
 }
